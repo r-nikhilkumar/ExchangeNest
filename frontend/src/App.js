@@ -3,7 +3,10 @@ import News from './components/News';
 
 function App(){
   return(
-    <News />
+    <div className="cont">
+      <News />
+
+    </div>
   )
 }
 

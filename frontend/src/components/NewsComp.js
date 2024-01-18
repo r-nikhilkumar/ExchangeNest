@@ -7,7 +7,7 @@ export default function NewsComp(props) {
         <div className="card-body">
             <h5 className="card-title" style={{WebkitBoxLines:'2',textOverflow:'ellipsis', whiteSpace:'nowrap', overflow:'hidden'}}>{props.heading}</h5>
             <p className="card-text" style={{whiteSpace: 'balance', height:'70px', textOverflow:'ellipsis', overflow:'clip'}}>{props.desc}</p>
-            <a href={props.url} className="btn btn-primary">more</a>
+            <a href={props.url} className="btn btn-primary" target='_blank'>more</a>
         </div>
     </div>
   )
