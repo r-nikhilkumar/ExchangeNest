@@ -9,7 +9,7 @@ export default function () {
             <div className="getstarted-left">
                 <h4>Welcome, the ExchangeNest is going to provide you all about the trading. You can learn as well as earn, join the communities for realtime absolute guidence!</h4>
                 <div>
-                    <Link className="nav-items" to='/profile'><div>Get Started</div></Link>
+                    <Link to="/profileSign" className="nav-items" ><div>Get Started</div></Link>
                 </div>
             </div>
             <div className="getstarted-right">

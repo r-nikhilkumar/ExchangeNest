@@ -1,22 +1,18 @@
-import { useEffect } from 'react';
-import './App.css';
-import Navigation from './components/Navigation';
-import News from './components/News';
-import { BrowserRouter } from "react-router-dom";
+import "./App.css";
+import Navigation from "./components/Navigation";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
+import News from "./components/News";
+import Home from "./components/Home";
+import Profile from "./components/Profile";
 
-
-function App(){
-  
-  return(
+function App() {
+  return (
     <div className="cont">
       <BrowserRouter>
-        <Navigation/>
-
-      
+        <Navigation />
       </BrowserRouter>
-
     </div>
-  )
+  );
 }
 
 export default App;

@@ -1,0 +1,23 @@
+
+.profile-form{
+    width: 100%;
+    height: 100%;
+    padding: 10vmin;
+    display: flex;
+    justify-content: end;
+}
+
+.profile-form .prof-bg-image{
+    flex: 1;
+    background-image: url('./photos/trading.jpg');
+    margin-right: 3vmin;
+    width: 50%;
+    min-height: 100%;
+}
+.profile-form form{
+    width: 30vmin;
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3vmin;
+}
