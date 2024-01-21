@@ -22,9 +22,10 @@ function News() {
         .then((obj)=>settradeeverything(obj))
 
     },[])
+
       if(!topheadlines || !tradeeverything || topheadlines.articles===undefined || tradeeverything.articles === undefined){
         return(
-          <div className='container my-4'>
+          <div className='container my-8'>
             <div className="con" style={{display:'flex', justifyContent:'center'}}>
               <div className="heading" style={{textAlign:'center', width:'300px', height:'50px', backgroundColor:'gray'}}></div>
             </div>
@@ -66,10 +67,10 @@ function News() {
     return (
       <div className="container my-4">
         <h2 style={{textAlign:'center'}}>Trade Market</h2>
-        <h3>Top-Headlines</h3>
           {
-            topheadlines && 
+            topheadlines && topheadlines.articles.length > 0 && 
             <div className="row">
+              <h3>Top-Headlines</h3>
               {
                 topheadlines.articles.map((data)=>{
                   return (
@@ -82,10 +83,11 @@ function News() {
               }
             </div>
           }
-          <h3>All News</h3>
+
           {
-            tradeeverything && 
+            tradeeverything && tradeeverything.articles.length > 0 && 
             <div className="row">
+            <h3>All News</h3>
               {
                 tradeeverything.articles.map((data)=>{
                   return (
