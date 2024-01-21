@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "../assets/Profile.css";
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 import trade from "../assets/photos/trading.jpg";
 export default function Profile() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+
+  let navigate = useNavigate()
   const submitform = async (e) => {
     e.preventDefault();
     const data = {
@@ -32,6 +35,7 @@ export default function Profile() {
     })
     const resData=await resp.json()
     console.log(resData)
+    navigate('/')
     alert('see log')
   }catch(err){
     console.log(err)

@@ -9,7 +9,7 @@ function App() {
   return (
     <div className="cont">
       <BrowserRouter>
-        <Navigation />
+        <Navigation /> 
       </BrowserRouter>
     </div>
   );

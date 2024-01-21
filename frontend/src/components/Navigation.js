@@ -1,11 +1,12 @@
 import React, { useEffect, useState } from "react";
-import { Link, Routes, Route } from "react-router-dom";
+import { Link, Routes, Route, useLocation } from "react-router-dom";
 import News from "./News";
 import "../assets/Navigation.css";
 import Home from "./Home";
 import Profile from "./Profile";
 
 export default function Navigation() {
+  let currLoc = useLocation().pathname
   return (
     <div>
       <nav className="navigation">
@@ -13,24 +14,24 @@ export default function Navigation() {
           <Link className="name" to="/">
             <h3>ExchangeNest</h3>
           </Link>
-          <Link className="nav-items" to="/">
+          <Link className="nav-items" to="/" style={{background:`${currLoc==="/"?'#2f2f56':''}`, color:`${currLoc==="/"?'white':''}`}}>
             <div>Home</div>
           </Link>
-          <Link className="nav-items" to="/community">
+          <Link className="nav-items" to="/community" style={{background:`${currLoc==="/community"?'#2f2f56':''}`, color:`${currLoc==="/community"?'white':''}`}}>
             <div>Community</div>
           </Link>
-          <Link className="nav-items" to="/Chat">
+          <Link className="nav-items" to="/chat" style={{background:`${currLoc==="/chat"?'#2f2f56':''}`, color:`${currLoc==="/chat"?'white':''}`}}>
             <div>Chats</div>
           </Link>
-          <Link className="nav-items" to="/news">
+          <Link className="nav-items" to="/news" style={{background:`${currLoc==="/news"?'#2f2f56':''}`, color:`${currLoc==="/news"?'white':''}`}}>
             <div>News</div>
           </Link>
-          <Link className="nav-items" to="/courses">
+          <Link className="nav-items" to="/courses" style={{background:`${currLoc==="/courses"?'#2f2f56':''}`, color:`${currLoc==="/courses"?'white':''}`}}>
             <div>Courses</div>
           </Link>
         </div>
         <div className="profile-icon">
-          <Link to='/profileSign'>
+          <Link to='/profileSign' style={{}}>
           <svg
             width="6vmin"
             height="80%"
@@ -59,11 +60,10 @@ export default function Navigation() {
       </nav>
       <Routes>
         <Route path="/news" element={<News />} />
-      </Routes>
-      <Routes>
+        <Route path="/community" />
+        <Route path="/chat" />
+        <Route path="/courses" />
         <Route path="/" element={<Home/>} />
-      </Routes>
-      <Routes>
         <Route path="/profileSign" element={<Profile/>} />
       </Routes>
     </div>
