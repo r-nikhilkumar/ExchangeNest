@@ -4,6 +4,8 @@ import News from "./News";
 import "../assets/Navigation.css";
 import Home from "./Home";
 import Profile from "./Profile";
+import Login from "./Login";
+import Community from "./Community";
 
 export default function Navigation() {
   let currLoc = useLocation().pathname
@@ -60,9 +62,10 @@ export default function Navigation() {
       </nav>
       <Routes>
         <Route path="/news" element={<News />} />
-        <Route path="/community" />
+        <Route path="/community" element={<Community/>} />
         <Route path="/chat" />
         <Route path="/courses" />
+        <Route path="/login" element={<Login/>}/>
         <Route path="/" element={<Home/>} />
         <Route path="/profileSign" element={<Profile/>} />
       </Routes>

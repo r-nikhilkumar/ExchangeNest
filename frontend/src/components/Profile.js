@@ -16,15 +16,6 @@ export default function Profile() {
       email: email,
       password: password,
     };
-    // try {
-    //   await axios.post("https://localhost:3001/auth/signup", data)
-    //     .then((res) => {
-    //       console.log(res);
-    //       alert("check console");
-    //     });
-    // } catch (err) {
-    //   console.log(err);
-    // }
     try{
     const resp = await fetch("http://localhost:3001/auth/signup",{
       method:"POST",
@@ -34,13 +25,19 @@ export default function Profile() {
       body:JSON.stringify(data)
     })
     const resData=await resp.json()
-    console.log(resData)
-    navigate('/')
-    alert('see log')
+    if(resData.message === "registered successfully!"){
+      navigate('/login')
+    }else{
+      alert(resData.message);
+    }
   }catch(err){
     console.log(err)
   }
   };
+  const gotoLogin = (e)=>{
+    e.preventDefault();
+    navigate('/login')
+  }
 
   return (
     <div className="profile-form py-5">
@@ -90,6 +87,11 @@ export default function Profile() {
           <button type="submit" className="btn btn-dark" onClick={submitform}>
             Submit
           </button>
+        </div>
+        <div>
+          <small id="login" className="form-text text-muted">
+            Already have account? <button className="btn btn-secondary" onClick={gotoLogin}>Login</button>
+          </small>
         </div>
       </form>
     </div>
