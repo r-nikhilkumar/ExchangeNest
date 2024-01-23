@@ -52,7 +52,7 @@ nav .nav-in .name{
     width: 100%;
     padding: 0.3vmin;
 }
-.nav-items div:hover{
+.nav-items:hover{
     color: rgb(255, 255, 255);
 }
 

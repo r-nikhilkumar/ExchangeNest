@@ -1,14 +1,18 @@
-import React, { useEffect, useState } from "react";
-import { Link, Routes, Route, useLocation } from "react-router-dom";
+import React, { useContext, useEffect, useState } from "react";
+import { Link, Routes, Route, useLocation, redirect, useNavigate } from "react-router-dom";
 import News from "./News";
 import "../assets/Navigation.css";
 import Home from "./Home";
 import Profile from "./Profile";
 import Login from "./Login";
 import Community from "./Community";
+import LoadingBar from "react-top-loading-bar";
+import { useAuth } from "../Contexts/AuthProvid";
 
-export default function Navigation() {
+export default function Navigation(props) {
   let currLoc = useLocation().pathname
+  const {isAuthenticated} = useAuth()
+  const navigatin = useNavigate()
   return (
     <div>
       <nav className="navigation">
@@ -61,8 +65,8 @@ export default function Navigation() {
         </div>
       </nav>
       <Routes>
-        <Route path="/news" element={<News />} />
-        <Route path="/community" element={<Community/>} />
+        <Route path="/news" element={<News loading = {{...props.loading}} />} />
+        <Route path="/community" element={isAuthenticated?<Community/>:<Login/>} />
         <Route path="/chat" />
         <Route path="/courses" />
         <Route path="/login" element={<Login/>}/>
@@ -72,30 +76,3 @@ export default function Navigation() {
     </div>
   );
 }
-
-// <div>
-//       <div className="navbar">
-//         <i className="fas fa-home"></i>
-//         <i className="fas fa-file"></i>
-//         <i className="fas fa-envelope"></i>
-//         <i className="fas fa-circle-info"></i>
-//         <button className="last-icon">
-//           <i className="fas fa-circle-half-stroke last-icon"></i>
-//         </button>
-//       </div>
-
-//       <div className="sections">
-//         <section className="hero" id="hero">
-//           <h1 className="example-text">Section1</h1>
-//         </section>
-//         <section className="projects" id="projects">
-//           <h1 className="example-text">Section2</h1>
-//         </section>
-//         <section className="contact" id="contact">
-//           <h1 className="example-text">Section3</h1>
-//         </section>
-//         <section className="info" id="info">
-//           <h1 className="example-text">Section4</h1>
-//         </section>
-//       </div>
-//     </div>

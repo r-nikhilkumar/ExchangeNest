@@ -1,9 +1,11 @@
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom';
+import { useAuth } from '../Contexts/AuthProvid';
 
 export default function Login() {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    const {login} = useAuth()
     const navigate = useNavigate()
     const submitLogin = async (e)=>{
         e.preventDefault();
@@ -22,6 +24,7 @@ export default function Login() {
         if(resJSON.message==="User not found"){
             alert('User does not exist')
         }else if(resJSON.message==="Login Successfull"){
+            login()
             navigate('/community')
         }else if(resJSON.message==="Wrong password"){
             alert('Wrong Password')
