@@ -42,6 +42,7 @@ router.post('/login', async (req, res)=>{
         message:"Login Successfull",
         data: userData
       })
+      // res.redirect('https://youtube.com')
     }
     else{
       res.status(401).send({
