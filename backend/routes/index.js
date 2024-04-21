@@ -9,15 +9,23 @@ let tophead = "https://newsapi.org/v2/top-headlines?q=business&apiKey="+apiKey1
 let every = "https://newsapi.org/v2/everything?q=business&apiKey="+apiKey1
 /* GET home page. */
 router.get('/api/news', async function(req, res, next) {
-  let topNews = await fetch(tophead)
-  let resp = await topNews.json()
-  res.send(resp)
+  try {
+    let topNews = await fetch(tophead)
+    let resp = await topNews.json()
+    res.send(resp)
+  } catch (error) {
+    console.log(error)
+  }
 });
 
 router.get('/api/allNews', async (req, res)=>{
-  let allNews = await fetch(every)
-  let resp = await allNews.json()
-  res.send(resp)
+  try {
+    let allNews = await fetch(every)
+    let resp = await allNews.json()
+    res.send(resp)
+  } catch (error) {
+    console.log(error)
+  }
 })
 
 module.exports = router;

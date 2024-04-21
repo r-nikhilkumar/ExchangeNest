@@ -4,6 +4,7 @@ import Hero from './components/Hero/Hero'
 import { BrowserRouter} from 'react-router-dom'
 import Home from './pages/Home/Home'
 import IsloggedIn from './contexts/IsloggedIn'
+import { Footer } from './components/CommunityComponent/CommunityComponent'
 
 
 

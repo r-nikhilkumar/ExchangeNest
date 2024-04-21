@@ -1,21 +1,13 @@
 import React, { useEffect, useState } from 'react'
 import ProfileLayout from './ProfileLayout'
+import { request } from '../../common/api/config'
+import { fetchUserAPI } from '../../common/api/apiCall'
 
 function Profile() {
     const [data, setData] = useState(null)
     useEffect(()=>{
-        fetch("http://localhost:3001/auth/fetchuser",{
-            method: "POST",
-            headers:{
-                "Content-Type":"application/json",
-                "auth-token" : window.localStorage.getItem('authToken')
-            }
-        })
-        .then((res)=>res.json())
-        .then((data)=>{
-            setData(data)
-            console.log(data)
-        })
+        request(fetchUserAPI)
+        .then(response => setData(response))
     },[])
   return (
     <div>

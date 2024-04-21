@@ -42,10 +42,10 @@ export default function Navbar() {
 
     const navigation = [
         { name: 'HOME', href: '/', current: location==='/' },
-        { name: 'Community', href: '/community', current: location==='/community' },
-        { name: 'Markets', href: '/markets', current: location==='/markets' },
-        { name: 'Trades', href: '/trades', current: location==='/trades' },
-        { name: 'Social', href: '/social', current: location==='/social' },
+        { name: 'COMMUNITY', href: '/community', current: location==='/community' },
+        { name: 'NEWS', href: '/news', current: location==='/news' },
+        { name: 'TRADES', href: '/trades', current: location==='/trades' },
+        { name: 'SOCIAL', href: '/social', current: location==='/social' },
     ]
 
     const islogged = window.localStorage.getItem('isLoggedIn')

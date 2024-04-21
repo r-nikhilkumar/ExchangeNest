@@ -1,0 +1,44 @@
+.company-icons-container {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .company-icon {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+  }
+  
+  .icon {
+    font-size: 48px;
+    color: #333;
+    transition: color 0.3s ease;
+  }
+  
+  .company-name {
+    margin-top: 5px;
+    font-size: 14px;
+  }
+  
+  .company-icon:hover .icon {
+    color: #007bff; /* Change color on hover */
+  }
+  
+  .more-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .more-button:hover {
+    background-color: #0056b3; /* Darker color on hover */
+  }
+  

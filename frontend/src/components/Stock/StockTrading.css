@@ -1,0 +1,74 @@
+
+  .trade-panel h2 {
+    margin-bottom: 20px;
+    font-size: 24px;
+  }
+  
+  .input-group {
+    margin-bottom: 15px;
+    display: flex;
+    gap: 2vmin;
+    justify-content: space-between;
+  }
+  
+  .input-group label {
+    display: inline;
+    font-weight: bold;
+    margin-bottom: 5px;
+  }
+  
+  .input-group input {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  .input-group span {
+    display: inline;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+  }
+  
+  #total {
+    display: inline;
+    margin-left: 3px;
+    padding: 3px;
+    border: 1px solid #2f1313;
+    border-radius: 4px;
+  }
+
+  .button-group {
+    margin-top: 20px;
+  }
+  
+  .buy-button,
+  .sell-button {
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    font-size: 16px;
+    cursor: pointer;
+  }
+  
+  .buy-button {
+    background-color: #4caf50;
+    color: #fff;
+  }
+  
+  .sell-button {
+    background-color: #f44336;
+    color: #fff;
+  }
+  
+  .stock-chart {
+    width: 45%;
+  }
+  
+  .stock-chart img {
+    width: 100%;
+    height: auto;
+  }
+  

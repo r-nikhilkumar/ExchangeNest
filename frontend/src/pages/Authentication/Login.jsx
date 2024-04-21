@@ -1,56 +1,55 @@
 // src/Login.jsx
-import React, { useContext, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { isLogged } from '../../contexts/IsloggedIn';
+import React, { useContext, useState } from "react";
+import { Link, useLocation, useNavigate } from "react-router-dom";
+import { isLogged } from "../../contexts/IsloggedIn";
+import { request } from "../../common/api/config";
+import { userLoginApi } from "../../common/api/apiCall";
+import Notification, {
+  handleNotification,
+} from "../../common/Notification/Notification";
 
 const Login = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
   const [rememberMe, setRememberMe] = useState(false);
-  const [msg, setmsg] = useState(null)
-  const isLoggedContext = useContext(isLogged)
-  const navigate = useNavigate()
-  const currentLocation = useLocation().pathname
+  const [msg, setmsg] = useState(null);
+  const isLoggedContext = useContext(isLogged);
+  const navigate = useNavigate();
+  const currentLocation = useLocation().pathname;
+  const [notification, setNotification] = useState(null);
   const handleSubmit = async (e) => {
     try {
       await e.preventDefault();
       // Handle login logic
       const data = {
         email: email,
-        password: password
-      }
-      const res = await fetch("http://localhost:3001/auth/login", {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json"
-        },
-        body: JSON.stringify(data)
-      })
-      const resJSON = await res.json()
-      if (resJSON.message === "Login Successfull") {
+        password: password,
+      };
+      const response = await request(userLoginApi, data);
+      if (response.message === "Login Successfull") {
         if (rememberMe) {
-          window.localStorage.setItem("authToken", resJSON.authToken)
-          window.localStorage.setItem("isLoggedIn", true)
-          isLoggedContext.setIsloggedInState(true)
-          setmsg(null)
+          window.localStorage.setItem("authToken", response.authToken);
+          window.localStorage.setItem("isLoggedIn", true);
+          isLoggedContext.setIsloggedInState(true);
+          setmsg(null);
           if (currentLocation === "/login") {
-            navigate('/community')
+            navigate("/community");
           }
           window.location.reload();
         } else {
-          setmsg(null)
-          isLoggedContext.setIsloggedInState(true)
-          window.localStorage.setItem("authToken", resJSON.authToken)
-          navigate('/community')
+          setmsg(null);
+          isLoggedContext.setIsloggedInState(true);
+          window.localStorage.setItem("authToken", response.authToken);
+          navigate("/community");
         }
-
       } else {
-        // alert(resJSON.message)
-        setmsg(resJSON.message)
+        // alert(response.message)
+        setmsg(response.message);
+        handleNotification(response.message, "error", setNotification);
       }
     } catch (error) {
-      console.log(error)
-      alert('something went wrong!')
+      console.log(error);
+      handleNotification(error, "error", setNotification);
     }
   };
 
@@ -60,7 +59,9 @@ const Login = () => {
         <h2 className="text-3xl font-semibold mb-6">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-600">Email</label>
+            <label htmlFor="email" className="block text-gray-600">
+              Email
+            </label>
             <input
               type="email"
               id="email"
@@ -72,7 +73,9 @@ const Login = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-gray-600">Password</label>
+            <label htmlFor="password" className="block text-gray-600">
+              Password
+            </label>
             <input
               type="password"
               id="password"
@@ -82,7 +85,9 @@ const Login = () => {
               className="mt-1 p-2 w-full border rounded-md"
               required
             />
-            <small className='my-0 py-0' style={{ color: 'red' }}>{msg}</small>
+            <small className="my-0 py-0" style={{ color: "red" }}>
+              {msg}
+            </small>
           </div>
 
           <div className="mb-4 flex items-center">
@@ -94,7 +99,9 @@ const Login = () => {
               onChange={() => setRememberMe(!rememberMe)}
               className="mr-2"
             />
-            <label htmlFor="rememberMe" className="text-gray-600">Remember me</label>
+            <label htmlFor="rememberMe" className="text-gray-600">
+              Remember me
+            </label>
           </div>
           <button
             type="submit"
@@ -104,12 +111,22 @@ const Login = () => {
           </button>
         </form>
         <div className="mt-4">
-          <p className='inline'>Don't have an account?</p>
-          <Link to="/signup"><p className="text-blue-500 inline"> Sign up here.</p></Link>
+          <p className="inline">Don't have an account?</p>
+          <Link to="/signup">
+            <p className="text-blue-500 inline"> Sign up here.</p>
+          </Link>
         </div>
         <div className="mt-2">
-          <Link to="/forgot_password" className="text-blue-500">Forgot your password?</Link>
+          <Link to="/forgot_password" className="text-blue-500">
+            Forgot your password?
+          </Link>
         </div>
+        {notification && (
+          <Notification
+            message={notification.message}
+            type={notification.type}
+          />
+        )}
       </div>
     </div>
   );

@@ -12,6 +12,7 @@ import { isLogged } from '../../contexts/IsloggedIn'
 import Profile from '../../pages/Profile/Profile'
 import ForgotPassword from '../../pages/Authentication/ForgotPassword'
 import ResetPassword from '../../pages/Authentication/ResetPassword'
+import AddPost from '../../pages/AddPost/AddPost'
 
 export default function Hero() {
     const [load, setLoad] = useState(0)
@@ -28,7 +29,7 @@ export default function Hero() {
         <Routes>
             <Route path='/' element={<Home/>}/>
             <Route path='/community' element={islogged || isLoggedContext.IsloggedInState?<Community/>:<Login/>}/>
-            <Route path='/markets' element={islogged || isLoggedContext.IsloggedInState?<Markets loading = {{load, setLoad}}/>:<Login/>}/>
+            <Route path='/news' element={islogged || isLoggedContext.IsloggedInState?<Markets loading = {{load, setLoad}}/>:<Login/>}/>
             <Route path='/trades' element={islogged || isLoggedContext.IsloggedInState?<Trades/>:<Login/>}/>
             <Route path='/social' element={islogged || isLoggedContext.IsloggedInState?<Social/>:<Login/>}/>
             <Route path='/profile' element={islogged || isLoggedContext.IsloggedInState?<Profile/>:<Login/>}/>
@@ -36,6 +37,7 @@ export default function Hero() {
             <Route path='/signup' element={<Signup/>}/>
             <Route path='/forgot_password' element={<ForgotPassword/>}/>
             <Route path='/reset_password' element={<ResetPassword/>}/>
+            <Route path='/add_post' element={<AddPost/>}/>
         </Routes>
         </div>
         

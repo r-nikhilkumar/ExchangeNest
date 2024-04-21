@@ -1,6 +1,9 @@
 import React, { useState } from 'react';
 import './signup.css'
 import { useNavigate } from 'react-router-dom';
+import { request } from '../../common/api/config';
+import { userRegisterApi } from '../../common/api/apiCall';
+import Notification from '../../common/Notification/Notification';
 function Signup() {
     const [formData, setFormData] = useState({
         name: '',
@@ -24,28 +27,19 @@ function Signup() {
                 contact:formData.contact,
                 password:formData.password
             }
-            const res = await fetch('http://localhost:3001/auth/signup', {
-                method:"POST",
-                headers:{
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(data)
-            })
-            const resJSON = await res.json();
-            if(resJSON.message === "registered successfully!"){
-                window.localStorage.setItem("authToken", resJSON.authToken)
-                window.localStorage.setItem("isLoggedIn", true)
+            const response = await request(userRegisterApi, data)
+            if(response.message === "registered successfully!"){
                 navigate('/profile')
                 window.location.reload();
-            }else if(resJSON.message==="user already exists!" || resJSON.message.split(" ").includes("duplicate")){
-                alert("user already exists!")
+            }else if(response.message==="user already exists!" || response.message.split(" ").includes("duplicate")){
+                alert(response.message)
             }
             else{
                 console.log(resizeBy.errors)
             }
         } catch (error) {
             console.log(error)
-            alert("Something went wrong!")
+            alert(error)
         }
     };
 
