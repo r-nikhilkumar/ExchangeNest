@@ -54,14 +54,10 @@ router.post("/api/trade", Fetchuser, async (req, res) => {
     const u = await user.findOne({ _id: id }).select("-password");
     const trade = await TradeDetail.create({
       user: id, // Accessing user from req.user
-      ...req.body
+      ...req.body,
     });
     let newPoints = u.Points;
-    if (buyOrSell === "Buy") {
-      newPoints -= tradeAmount;
-    } else {
-      newPoints += tradeAmount;
-    }
+    newPoints -= tradeAmount;
 
     // Update user's points
     const updatedUser = await user.findByIdAndUpdate(
@@ -73,6 +69,49 @@ router.post("/api/trade", Fetchuser, async (req, res) => {
   } catch (error) {
     console.error(error);
     res.status(500).json({ message: "Server Error" });
+  }
+});
+
+router.post("/api/fetchPortfolio", Fetchuser, async (req, res) => {
+  try {
+    const allTrades = await TradeDetail.find({ user: req.user.id });
+    res.json(allTrades);
+  } catch (err) {
+    console.error("Error fetching portfolio:", err);
+    res.status(500).json({ error: "Server error" });
+  }
+});
+
+router.post("/api/squareOff", Fetchuser, async (req, res) => {
+  try {
+    const trade = await TradeDetail.findOne({ _id: req.body.id });
+    // console.log("id: ",req.body.id)
+    if (!trade) {
+      console.log("tr: ", trade);
+      console.log("id: ", req.body.id);
+      return;
+    }
+    let newPoints = 0;
+    newPoints =
+      trade.buyOrSell === "Buy"
+        ? trade.tradeAmount +
+          (trade.quantity * req.body.curr - trade.tradeAmount)
+        : trade.tradeAmount -
+          (trade.quantity * req.body.curr - trade.tradeAmount);
+
+    trade.status = "SO";
+    await trade.save();
+
+    const updatedUser = await user.findByIdAndUpdate(
+      req.user.id,
+      { $inc: { Points: newPoints } }, // Increment points by newPoints
+      { new: true }
+    );
+
+    res.json({ trade, user: updatedUser });
+  } catch (err) {
+    console.error("Error squaring off trade:", err);
+    res.status(500).json({ error: "Server error" });
   }
 });
 

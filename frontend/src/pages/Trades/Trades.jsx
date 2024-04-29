@@ -15,17 +15,19 @@ import { faCoins } from "@fortawesome/free-solid-svg-icons";
 import TradingView from "../Trading/TradingView";
 import { request } from "../../common/api/config";
 import { fetchUserAPI } from "../../common/api/apiCall";
+import Portfolio from "../Portfolio/Portfolio";
 
 const Trades = () => {
   const [loading, setLoading] = useState(false);
   const [tradeHeading, setTradeHeading] = useState("AAPL");
   const [showBSDialog, setShowBSDialog] = useState(false);
   const [ENP, setENP] = useState(0);
+  const [flag, setFlag] = useState(false)
   useEffect(() => {
     request(fetchUserAPI).then((response) => {
       setENP(response.userData.Points);
     });
-  }, []);
+  }, [flag]);
 
   const handleDialog = () => {
     setShowBSDialog(!showBSDialog);
@@ -68,7 +70,9 @@ const Trades = () => {
           </div>
           <div className="grid grid-rows-2 md:grid-rows-2 gap-8">
             <div className="w-full">
-              <h3 className="bg-gray-600 rounded-lg shadow-md p-2 text-xl font-semibold mb-1">{tradeHeading}</h3>
+              <h3 className="bg-gray-600 rounded-lg shadow-md p-2 text-xl font-semibold mb-1">
+                {tradeHeading}
+              </h3>
               <TradingView symbol={tradeHeading} />
               <div className="flex justify-start mt-5">
                 <button
@@ -81,11 +85,16 @@ const Trades = () => {
             </div>
             <div className="h-fit">
               <CompanyIcons onClick={handleIconClick} />
+              <Portfolio flag={flag} setFlag={setFlag} ENP={ENP}/>
             </div>
           </div>
           <div>
             <DialogBox show={showBSDialog} setShow={setShowBSDialog}>
-              <StockTrading heading={tradeHeading} setENP={setENP} setShow={setShowBSDialog} />
+              <StockTrading
+                heading={tradeHeading}
+                setENP={setENP}
+                setShow={setShowBSDialog}
+              />
             </DialogBox>
           </div>
         </div>

@@ -1,5 +1,6 @@
 .company-icons-container {
     display: flex;
+    height: fit-content;
     justify-content: space-around;
     align-items: center;
     width: 100%;

@@ -25,6 +25,12 @@ const tradeSchema = new mongoose.Schema({
     enum: ['Buy', 'Sell'],
     required: true
   },
+  status: {
+    type: String,
+    enum: ['Hold', 'SO'],
+    required: false,
+    default: 'Hold'
+  },
   quantity: {
     type: Number,
     required: true
