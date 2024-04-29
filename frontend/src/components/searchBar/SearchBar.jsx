@@ -62,7 +62,7 @@ const SearchBar = ({ onSearch }) => {
   }, []);
 
   return (
-    <form onSubmit={handleSubmit} className="relative">
+    <form onSubmit={handleSubmit} className="relative text-black">
       <input
         type="text"
         value={query}

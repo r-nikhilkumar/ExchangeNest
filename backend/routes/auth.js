@@ -70,7 +70,7 @@ router.post('/login', async (req, res) => {
     else {
       const check = await bcryptjs.compare(userData.password, checkCredentials.password)
       if (checkCredentials.email === userData.email && check) {
-        console.log(bcryptjs.compare(userData.password, checkCredentials.password))
+        // console.log(bcryptjs.compare(userData.password, checkCredentials.password))
         res.status(200).send({
           message: "Login Successfull",
           authToken: jwt_login_res_token,
@@ -122,7 +122,7 @@ router.post('/upload', [Fetchuser ,upload.single('profilePic')], async (req, res
     }
     const fileName = req.file.filename;
     const id = req.user.id
-    console.log(id)
+    // console.log(id)
     const filePath= `http://localhost:3001/userimages/${fileName}`
     // Handle file path and send response as needed
     const u = await user.findOne({_id: id})

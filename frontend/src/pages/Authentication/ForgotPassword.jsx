@@ -34,14 +34,14 @@ function ForgotPassword() {
     };
 
     return (
-        <div className="flex justify-center items-center h-screen bg-gray-100">
-            <div className="bg-white rounded-lg shadow-lg p-8 w-full max-w-md">
+        <div className="flex justify-center items-center h-screen">
+            <div className="bg-gray-400 rounded-lg shadow-lg p-8 w-full max-w-md text-black">
                 <h2 className="text-xl font-bold mb-4">Forgot Password</h2>
                 {error && <div className="text-red-500 mb-4">{error}</div>}
                 {message && <div className="text-green-500 mb-4">{message}</div>}
                 <form onSubmit={handleSubmit}>
                     <div className="mb-4">
-                        <label htmlFor="email" className="block text-sm font-medium text-gray-700">Email Address</label>
+                        <label htmlFor="email" className="block text-sm font-medium">Email Address</label>
                         <input
                             type="email"
                             id="email"

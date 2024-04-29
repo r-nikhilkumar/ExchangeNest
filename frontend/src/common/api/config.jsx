@@ -27,7 +27,7 @@ export const request = async (api, body=null)=>{
                 body: body ? JSON.stringify(body) : undefined
             })
             const response = await res.json()
-            console.log(response)
+            // console.log(response)
             if(response.authToken){
                 window.localStorage.setItem("authToken", response.authToken)
                 window.localStorage.setItem("isLoggedIn", true)

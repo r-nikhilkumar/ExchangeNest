@@ -1,4 +1,4 @@
-import { fetchUser, userLogin, userRegister } from "./routes";
+import { fetchUser, trade, userLogin, userRegister } from "./routes";
 
 export const userRegisterApi = {
     path: userRegister,
@@ -11,5 +11,10 @@ export const userLoginApi = {
 }
 export const fetchUserAPI = {
     path: fetchUser,
+    method: "POST"
+}
+
+export const tradeAPI = {
+    path: trade,
     method: "POST"
 }

@@ -35,7 +35,7 @@ export default function Navbar() {
           .then((res)=>res.json())
           .then((data)=>{
               setData(data)
-              console.log(data)
+              // console.log(data)
           })
         }
     },[window.localStorage.getItem('authToken')])
@@ -45,7 +45,7 @@ export default function Navbar() {
         { name: 'COMMUNITY', href: '/community', current: location==='/community' },
         { name: 'NEWS', href: '/news', current: location==='/news' },
         { name: 'TRADES', href: '/trades', current: location==='/trades' },
-        { name: 'SOCIAL', href: '/social', current: location==='/social' },
+        { name: 'COURSES', href: '/course', current: location==='/course' },
     ]
 
     const islogged = window.localStorage.getItem('isLoggedIn')
@@ -109,7 +109,7 @@ export default function Navbar() {
                 {/* Profile dropdown */}
                 {
                     !islogged && !isLoggedContext.IsloggedInState?
-                    <div className="rounded px-2 py-1 mx-3 hover:cursor-pointer hover:scale-105 login">
+                    <div className="rounded px-2 py-1 mx-3 hover:cursor-pointer hover:scale-105 login text-black">
                         <Link to='/login'>Login</Link>
                     </div>
                     :

@@ -92,7 +92,7 @@ function AddPost() {
               src="https://i.postimg.cc/QMD2BDXs/live-video.png"
               alt="live-video"
             />
-            Live Video
+            <span className="text-white">Live Video</span>
           </a>
         </div>
 

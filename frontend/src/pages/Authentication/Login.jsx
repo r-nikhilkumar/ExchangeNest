@@ -48,7 +48,7 @@ const Login = () => {
         handleNotification(response.message, "error", setNotification);
       }
     } catch (error) {
-      console.log(error);
+      // console.log(error);
       handleNotification(error, "error", setNotification);
     }
   };
@@ -59,7 +59,7 @@ const Login = () => {
         <h2 className="text-3xl font-semibold mb-6">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
-            <label htmlFor="email" className="block text-gray-600">
+            <label htmlFor="email" className="block text-white">
               Email
             </label>
             <input
@@ -73,7 +73,7 @@ const Login = () => {
             />
           </div>
           <div className="mb-4">
-            <label htmlFor="password" className="block text-gray-600">
+            <label htmlFor="password" className="block text-white">
               Password
             </label>
             <input
@@ -99,7 +99,7 @@ const Login = () => {
               onChange={() => setRememberMe(!rememberMe)}
               className="mr-2"
             />
-            <label htmlFor="rememberMe" className="text-gray-600">
+            <label htmlFor="rememberMe" className="text-white">
               Remember me
             </label>
           </div>

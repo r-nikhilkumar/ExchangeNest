@@ -12,7 +12,7 @@ import AddPost from "../../pages/AddPost/AddPost";
 
 export const LeftSidebar = () => {
   return (
-    <div className="left-sidebar">
+    <div className="left-sidebar dark-theme">
       {/* Latest News */}
       <div className="imp-links">
         {latestNewsData.map((item) => (
@@ -24,7 +24,7 @@ export const LeftSidebar = () => {
         <a href="#">See More</a>
       </div>
       {/* Shortcut Links */}
-      <div className="shortcut-link">
+      <div className="shortcut-link dark-theme">
         <p>Your Shortcuts</p>
         {shortcutLinksData.map((item) => (
           <a key={item.id} href="#">

@@ -27,7 +27,7 @@
   .input-group span {
     display: inline;
     padding: 8px;
-    border: 1px solid #ccc;
+    border: 1px solid #463f3f;
     border-radius: 4px;
   }
   
@@ -55,12 +55,12 @@
   
   .buy-button {
     background-color: #4caf50;
-    color: #fff;
+    color: #010000;
   }
   
   .sell-button {
     background-color: #f44336;
-    color: #fff;
+    color: #000000;
   }
   
   .stock-chart {
@@ -71,4 +71,34 @@
     width: 100%;
     height: auto;
   }
+
+  .input-group {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
   
+  .input-group div {
+    flex: 1;
+  }
+  
+  .input-field {
+    padding: 8px;
+    border: 1px solid #443d3d;
+    border-radius: 4px;
+    font-size: 14px;
+  }
+  
+  .input-field:focus {
+    outline: none;
+  }
+  
+  h3{
+    padding: 3px;
+    font-size: 14px;
+  }
+
+  .stock-trading-container{
+    background: #093a44;
+    padding: 3vmin;
+  }

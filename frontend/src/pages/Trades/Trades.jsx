@@ -1,21 +1,31 @@
-import React, { useRef, useState } from "react";
+import React, { useEffect, useRef, useState } from "react";
 import CandlestickChart from "./CandlestickChart";
 import CompanyIcons from "../../common/icons/CompanyIcons";
 import data from "../../common/data/data";
 import SearchBar from "../../components/searchBar/SearchBar";
 import TradingIcons from "../../common/icons/TradingIcons";
 import ProgressCircle from "../../common/Progress/ProgressCircle";
-import { handleNotification } from "../../common/Notification/Notification";
+import Notification, {
+  handleNotification,
+} from "../../common/Notification/Notification";
 import DialogBox from "../../components/Dialog/DialogBox";
 import StockTrading from "../../components/Stock/StockTrading";
 import CountCard from "../../components/Card/CountCard";
 import { faCoins } from "@fortawesome/free-solid-svg-icons";
+import TradingView from "../Trading/TradingView";
+import { request } from "../../common/api/config";
+import { fetchUserAPI } from "../../common/api/apiCall";
 
 const Trades = () => {
   const [loading, setLoading] = useState(false);
-  const [tradeHeading, setTradeHeading] = useState("ExchangeNest");
+  const [tradeHeading, setTradeHeading] = useState("AAPL");
   const [showBSDialog, setShowBSDialog] = useState(false);
-  const [ENP, setENP] = useState(5000)
+  const [ENP, setENP] = useState(0);
+  useEffect(() => {
+    request(fetchUserAPI).then((response) => {
+      setENP(response.userData.Points);
+    });
+  }, []);
 
   const handleDialog = () => {
     setShowBSDialog(!showBSDialog);
@@ -27,7 +37,6 @@ const Trades = () => {
     setTimeout(() => {
       setLoading(false);
       setTradeHeading(query);
-      handleNotification("data found", "success", setNotification);
     }, 2000);
     // Perform search logic here
   };
@@ -37,7 +46,6 @@ const Trades = () => {
     setTimeout(() => {
       setLoading(false);
       setTradeHeading(companyName);
-      handleNotification("data found", "success", setNotification);
     }, 2000);
   };
 
@@ -52,17 +60,17 @@ const Trades = () => {
         </div>
       ) : (
         <div>
-          <div className="p-2 mt-2 mb-2 grid grid-cols-4 align-items-center">
+          <div className=" mt-2 mb-2 grid grid-cols-4 align-items-center">
             <div className="col-span-3">
-            <TradingIcons onclick={handleIconClick} />
+              <TradingIcons onclick={handleIconClick} />
             </div>
-            <CountCard label="Total Points" count={ENP} icon={faCoins}/>
+            <CountCard label="Total Points" count={ENP} icon={faCoins} />
           </div>
           <div className="grid grid-rows-2 md:grid-rows-2 gap-8">
-            <div className="bg-white rounded-lg shadow-md p-2">
-              <h3 className="text-xl font-semibold mb-4">{tradeHeading}</h3>
-              <CandlestickChart data={data} />
-              <div className="flex justify-end m-2">
+            <div className="w-full">
+              <h3 className="bg-gray-600 rounded-lg shadow-md p-2 text-xl font-semibold mb-1">{tradeHeading}</h3>
+              <TradingView symbol={tradeHeading} />
+              <div className="flex justify-start mt-5">
                 <button
                   className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded block justify-end"
                   onClick={handleDialog}
@@ -71,14 +79,13 @@ const Trades = () => {
                 </button>
               </div>
             </div>
-
-            <div className="bg-white rounded-lg shadow-md p-2 h-fit">
+            <div className="h-fit">
               <CompanyIcons onClick={handleIconClick} />
             </div>
           </div>
           <div>
             <DialogBox show={showBSDialog} setShow={setShowBSDialog}>
-              <StockTrading heading={tradeHeading} />
+              <StockTrading heading={tradeHeading} setENP={setENP} setShow={setShowBSDialog} />
             </DialogBox>
           </div>
         </div>

@@ -14,23 +14,23 @@ const CompanyIcons = ({onClick}) => {
 
   return (
     <div className="company-icons-container h-fit">
-      <div className="company-icon" onClick={() => handleIconClick('Apple')}>
+      <div className="company-icon" onClick={() => handleIconClick('AAPL')}>
         <FontAwesomeIcon icon={faApple} className="icon" />
         <span className="company-name">Apple</span>
       </div>
-      <div className="company-icon" onClick={() => handleIconClick('Google')}>
+      <div className="company-icon" onClick={() => handleIconClick('GOOGL')}>
         <FontAwesomeIcon icon={faGoogle} className="icon" />
         <span className="company-name">Google</span>
       </div>
-      <div className="company-icon" onClick={() => handleIconClick('Microsoft')}>
+      <div className="company-icon" onClick={() => handleIconClick('MSFT')}>
         <FontAwesomeIcon icon={faMicrosoft} className="icon" />
         <span className="company-name">Microsoft</span>
       </div>
-      <div className="company-icon" onClick={() => handleIconClick('Facebook')}>
+      <div className="company-icon" onClick={() => handleIconClick('META')}>
         <FontAwesomeIcon icon={faFacebook} className="icon" />
         <span className="company-name">Facebook</span>
       </div>
-      <div className="company-icon" onClick={() => handleIconClick('Twitter')}>
+      <div className="company-icon" onClick={() => handleIconClick('TWTR')}>
         <FontAwesomeIcon icon={faTwitter} className="icon" />
         <span className="company-name">Twitter</span>
       </div>
