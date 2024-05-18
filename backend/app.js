@@ -34,7 +34,7 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/userimages', express.static(path.join(__dirname, 'public/upload/images')));
 
-mongoURL = "mongodb+srv://thenikhilkumar1:xWqtQ2IRQRzQcFcv@exchangenest.pt6cfyl.mongodb.net/?retryWrites=true&w=majority&appName=ExchangeNest"
+mongoURL = `mongodb+srv://${process.env.DB_USERNAME}:${process.env.DB_PASSWORD}@exchangenest.pt6cfyl.mongodb.net/?retryWrites=true&w=majority&appName=${process.env.DB_NAME}`
 mongoose.connect(mongoURL);
 
 app.use('/', indexRouter);
