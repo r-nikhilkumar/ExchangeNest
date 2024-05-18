@@ -57,42 +57,42 @@ app.use(function(err, req, res, next) {
 });
 
 const server = http.createServer(app);
-const wss = new WebSocket.Server({ server });
+// const wss = new WebSocket.Server({ server });
 
-const symbols = ['btcusdt@kline_1m'];
+// const symbols = ['btcusdt@kline_1m'];
 
-wss.on('connection', (ws) => {
-  console.log('Client connected');
+// wss.on('connection', (ws) => {
+//   console.log('Client connected');
   
-  const subscribe = () => {
-    symbols.forEach(symbol => {
-      const wsUrl = `wss://stream.binance.com:9443/ws/${symbol}`;
-      const wsInstance = new WebSocket(wsUrl);
+//   const subscribe = () => {
+//     symbols.forEach(symbol => {
+//       const wsUrl = `wss://stream.binance.com:9443/ws/${symbol}`;
+//       const wsInstance = new WebSocket(wsUrl);
 
-      wsInstance.on('message', (data) => {
-        ws.send(data);
-      });
+//       wsInstance.on('message', (data) => {
+//         ws.send(data);
+//       });
 
-      wsInstance.on('error', (error) => {
-        console.error('WebSocket error:', error);
-      });
+//       wsInstance.on('error', (error) => {
+//         console.error('WebSocket error:', error);
+//       });
 
-      wsInstance.on('close', () => {
-        console.log('WebSocket connection closed. Reconnecting...');
-        setTimeout(subscribe, 5000); // Attempt to reconnect after 5 seconds
-      });
-    });
-  };
+//       wsInstance.on('close', () => {
+//         console.log('WebSocket connection closed. Reconnecting...');
+//         setTimeout(subscribe, 5000); // Attempt to reconnect after 5 seconds
+//       });
+//     });
+//   };
 
-  subscribe();
+//   subscribe();
 
-  ws.on('close', () => {
-    console.log('Client disconnected');
-  });
-});
+//   ws.on('close', () => {
+//     console.log('Client disconnected');
+//   });
+// });
 
-server.listen(8080, () => {
-  console.log('WebSocket Server started on port 8080');
-});
+// server.listen(8080, () => {
+//   console.log('WebSocket Server started on port 8080');
+// });
 
 module.exports = app;
