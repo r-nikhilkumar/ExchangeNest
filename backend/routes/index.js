@@ -116,7 +116,7 @@ router.post("/api/squareOff", Fetchuser, async (req, res) => {
 });
 
 router.get("/", (req, res)=>{
-  res.json({"message":"hii"})
+  res.render('index')
 })
 
 module.exports = router;
