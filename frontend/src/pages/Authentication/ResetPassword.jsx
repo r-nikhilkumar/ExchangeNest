@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { Navigate, useLocation, useNavigate } from 'react-router-dom';
+import { request } from '../../common/api/config';
+import { resetPasswordAPI } from '../../common/api/apiCall';
 
 function ResetPassword() {
     const [password, setPassword] = useState('');
@@ -19,15 +21,7 @@ function ResetPassword() {
         }
 
         try {
-            const response = await fetch('http://localhost:3001/auth/reset_password', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                    'auth-token' : location.state.authToken
-                },
-                body: JSON.stringify({ password }),
-            });
-            const data = await response.json();
+            const data = await request(resetPasswordAPI, { password })
 
             if (data.message ==="Password reset successfully!") {
                 alert(data.message)

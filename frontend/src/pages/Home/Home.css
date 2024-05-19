@@ -76,14 +76,7 @@ body ::-webkit-scrollbar-thumb {
 }
 
 nav {
-  position: absolute;
-  top: 0;
-  display: flex;
-  padding-top: 20px;
-  align-items: center;
   opacity: 0;
-  gap: 20px;
-  z-index: 5;
   animation: fadeEaseIn 3s cubic-bezier(0, 0.33, 0.07, 1.03) 0s forwards;
 }
 

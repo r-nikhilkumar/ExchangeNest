@@ -1,4 +1,4 @@
-import { fetchPortfolio, fetchUser, squareOffPort, trade, userLogin, userRegister } from "./routes";
+import { allNews, fetchPortfolio, fetchUser, forgotPassword, resetPassword, squareOffPort, topNews, trade, updateProfile, userLogin, userRegister } from "./routes";
 
 export const userRegisterApi = {
     path: userRegister,
@@ -27,4 +27,29 @@ export const fetchPortfolioAPI = {
 export const squareOffPortAPI = {
     path: squareOffPort,
     method: "POST"
+}
+
+export const forgotPasswordAPI = {
+    path: forgotPassword,
+    method: "POST"
+}
+
+export const resetPasswordAPI = {
+    path: resetPassword,
+    method: "POST"
+}
+
+export const updateProfileAPI = {
+    path: updateProfile,
+    method: "POST"
+}
+
+export const getTopNewsAPI = {
+    path: topNews,
+    method: "GET"
+}
+
+export const getAllNewsAPI = {
+    path: allNews,
+    method: "GET"
 }

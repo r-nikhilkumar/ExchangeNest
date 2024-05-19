@@ -13,6 +13,8 @@ export const configHeader = () => {
     return headers
 }
 
+export const API_URL = "https://exchangenestapi.onrender.com"
+
 export const request = async (api, body=null)=>{
     try {
         let headers;
@@ -20,7 +22,7 @@ export const request = async (api, body=null)=>{
             headers = configHeader()
         }
         if(headers){
-            const url = "http://localhost:3001"+api.path
+            const url = API_URL + api.path
             const res = await fetch(url, {
                 method: api.method,
                 headers: headers,

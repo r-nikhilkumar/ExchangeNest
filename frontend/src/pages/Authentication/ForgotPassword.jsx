@@ -1,5 +1,7 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
+import { forgotPasswordAPI } from '../../common/api/apiCall';
+import { request } from '../../common/api/config';
 
 function ForgotPassword() {
     const [email, setEmail] = useState('');
@@ -13,15 +15,7 @@ function ForgotPassword() {
         setMessage('');
 
         try {
-            const response = await fetch('http://localhost:3001/auth/forgot_password', {
-                method: 'POST',
-                headers: {
-                    'Content-Type': 'application/json',
-                },
-                body: JSON.stringify({ email }),
-            });
-            const data = await response.json();
-
+            const data = await request(forgotPasswordAPI, { email });
             if (data.message === "user found!") {
                 navigate('/reset_password', {state:{authToken : data.authToken}})
             } else {

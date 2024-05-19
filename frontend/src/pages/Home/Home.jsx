@@ -216,7 +216,10 @@ const Home = () => {
             <li>Get started</li>
           </ul>
           <div className="footer-icon">
-            <a className="download flex gap-5" href="https://github.com/r-nikhilkumar/Fleeker/releases/download/v1.0.0-alpha/app-debug.apk">
+            <a
+              className="download flex gap-5"
+              href="https://github.com/r-nikhilkumar/Fleeker/releases/download/v1.0.0-alpha/app-debug.apk"
+            >
               <FaPhoneAlt />
               <span>Download App</span>
               <FaPlayCircle />

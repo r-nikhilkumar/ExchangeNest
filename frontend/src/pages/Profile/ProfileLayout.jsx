@@ -1,5 +1,7 @@
 import React, { useState } from "react";
 import AvatarEditor from "react-avatar-editor";
+import { request } from "../../common/api/config";
+import { updateProfileAPI } from "../../common/api/apiCall";
 
 function ProfileLayout({ user }) {
   const [isEditing, setIsEditing] = useState(false);
@@ -34,7 +36,7 @@ function ProfileLayout({ user }) {
       formData.append("profilePic", image);
 
       try {
-        const response = await fetch("http://localhost:3001/auth/upload", {
+        const response = await fetch("https://exchangenestapi.onrender.com/auth/upload", {
           method: "POST",
           headers: {
             Accept: "application/json",
@@ -42,8 +44,7 @@ function ProfileLayout({ user }) {
           },
           body: formData,
         });
-
-        const imageData = await response.json();
+        const imageData = await response.json()
         setImagePreview(imageData.filePath);
       } catch (error) {
         console.error("Error uploading profile picture:", error);
@@ -56,18 +57,7 @@ function ProfileLayout({ user }) {
       email,
       contact,
     };
-    const res = await fetch("http://localhost:3001/auth/update", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-        "auth-token": window.localStorage.getItem("authToken"),
-      },
-      body: JSON.stringify(updateData),
-    });
-    const resP = await res.json();
-    // console.log(resP)
-
-    // Mock API call to update profile
+    const resP = await request(updateProfileAPI, updateData)
     console.log("Updating profile...");
     setTimeout(() => {
       console.log("Profile updated successfully!");

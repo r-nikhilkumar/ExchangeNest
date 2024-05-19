@@ -17,6 +17,7 @@ const Login = () => {
   const navigate = useNavigate();
   const currentLocation = useLocation().pathname;
   const [notification, setNotification] = useState(null);
+
   const handleSubmit = async (e) => {
     try {
       await e.preventDefault();
@@ -43,20 +44,18 @@ const Login = () => {
           navigate("/community");
         }
       } else {
-        // alert(response.message)
         setmsg(response.message);
         handleNotification(response.message, "error", setNotification);
       }
     } catch (error) {
-      // console.log(error);
       handleNotification(error, "error", setNotification);
     }
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center">
-      <div className="max-w-md w-full p-6 bg-gray rounded-md shadow-md">
-        <h2 className="text-3xl font-semibold mb-6">Login</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-900">
+      <div className="max-w-md w-full p-6 bg-gray-800 rounded-md shadow-md">
+        <h2 className="text-3xl font-semibold mb-6 text-white">Login</h2>
         <form onSubmit={handleSubmit}>
           <div className="mb-4">
             <label htmlFor="email" className="block text-white">
@@ -68,7 +67,7 @@ const Login = () => {
               name="email"
               value={email}
               onChange={(e) => setEmail(e.target.value)}
-              className="mt-1 p-2 w-full border rounded-md"
+              className="mt-1 p-2 w-full border rounded-md bg-white text-black"
               required
             />
           </div>
@@ -82,7 +81,7 @@ const Login = () => {
               name="password"
               value={password}
               onChange={(e) => setPassword(e.target.value)}
-              className="mt-1 p-2 w-full border rounded-md"
+              className="mt-1 p-2 w-full border rounded-md bg-white text-black"
               required
             />
             <small className="my-0 py-0" style={{ color: "red" }}>
@@ -111,7 +110,7 @@ const Login = () => {
           </button>
         </form>
         <div className="mt-4">
-          <p className="inline">Don't have an account?</p>
+          <p className="inline text-white">Don't have an account?</p>
           <Link to="/signup">
             <p className="text-blue-500 inline"> Sign up here.</p>
           </Link>
