@@ -123,7 +123,7 @@ router.post('/upload', [Fetchuser ,upload.single('profilePic')], async (req, res
     const fileName = req.file.filename;
     const id = req.user.id
     // console.log(id)
-    const filePath= `http://localhost:3001/userimages/${fileName}`
+    const filePath= `https://exchangenestapi.onrender.com/userimages/${fileName}`
     // Handle file path and send response as needed
     const u = await user.findOne({_id: id})
     u.set({image:filePath})
