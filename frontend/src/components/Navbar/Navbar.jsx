@@ -1,20 +1,12 @@
 import { Fragment, useContext, useEffect, useState } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { Bars3Icon, BellIcon, XMarkIcon } from "@heroicons/react/24/outline";
-import { useLocation, useNavigate } from "react-router-dom";
-import { Link } from "react-router-dom";
+import { useLocation, useNavigate, Link } from "react-router-dom";
 import logo from "../../assets/logo_main.png";
 import "./navbar.css";
 import { isLogged } from "../../contexts/IsloggedIn";
 import { request } from "../../common/api/config";
 import { fetchUserAPI } from "../../common/api/apiCall";
-// const navigation = [
-//   { name: 'HOME', href: '/', current: false },
-//   { name: 'Community', href: '/community', current: false },
-//   { name: 'Markets', href: '/markets', current: false },
-//   { name: 'Trades', href: '/trades', current: false },
-//   { name: 'Social', href: '/social', current: false },
-// ]
 
 function classNames(...classes) {
   return classes.filter(Boolean).join(" ");
@@ -25,11 +17,11 @@ export default function Navbar() {
   const navigate = useNavigate();
   const isLoggedContext = useContext(isLogged);
   const [data, setData] = useState(null);
+  
   useEffect(() => {
     if (window.localStorage.getItem("authToken")) {
       request(fetchUserAPI).then((data) => {
         setData(data);
-        // console.log(data)
       });
     }
   }, []);
@@ -47,16 +39,15 @@ export default function Navbar() {
   ];
 
   const islogged = window.localStorage.getItem("isLoggedIn");
+
   return (
     <Disclosure as="nav" className="bg-gray-800 fixed-top">
       {({ open }) => (
         <>
-          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
+          <div className="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8 justify-between w-full">
             <div className="relative flex h-16 items-center justify-between">
-              <div className="absolute inset-y-0 left-0 flex items-start sm:hidden">
-                {/* Mobile menu button*/}
+              <div className="absolute inset-y-0 left-0 flex items-start sm:hidden z-10">
                 <Disclosure.Button className="inline-flex align-self-center items-center justify-center rounded-md p-2 text-gray-400 hover:bg-gray-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white">
-                  <span className="absolute -inset-0.5" />
                   <span className="sr-only">Open main menu</span>
                   {open ? (
                     <XMarkIcon className="block h-6 w-6" aria-hidden="true" />
@@ -100,7 +91,6 @@ export default function Navbar() {
                   type="button"
                   className="mx-2 relative rounded-full bg-gray-800 p-1 text-gray-400 hover:text-white focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800"
                 >
-                  <span className="absolute -inset-1.5" />
                   <span className="sr-only">2</span>
                   <BellIcon className="h-6 w-6" aria-hidden="true" />
                 </Link>
@@ -114,7 +104,6 @@ export default function Navbar() {
                   <Menu as="div" className="relative ml-3">
                     <div>
                       <Menu.Button className="relative flex rounded-full bg-gray-800 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800">
-                        <span className="absolute -inset-1.5" />
                         <span className="sr-only">Open user menu</span>
                         <img
                           className="h-8 w-8 rounded-full"
@@ -191,7 +180,7 @@ export default function Navbar() {
             </div>
           </div>
 
-          <Disclosure.Panel className="sm:hidden">
+          <Disclosure.Panel className="sm:hidden z-10">
             <div className="space-y-1 px-2 pb-3 pt-2">
               {navigation.map((item) => (
                 <Disclosure.Button
