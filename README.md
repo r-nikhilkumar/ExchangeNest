@@ -93,7 +93,7 @@ ExchangeNest is a cutting-edge trading platform designed to provide users with a
 4. Explore the trading interface, manage your portfolio, and start trading!
 
 ## Demo
-Access the live version of ExchangeNest at: [ExchangeNest Live](https://exchange-next.vercel.app)
+Access the live version of ExchangeNest at: [ExchangeNest Live](https://exchange-nest.vercel.app)
 
 ## Contribution
 
