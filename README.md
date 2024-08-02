@@ -86,7 +86,7 @@ ExchangeNest is a cutting-edge trading platform designed to provide users with a
 
 1. Ensure both the backend and frontend servers are running.
 
-2. Open your browser and navigate to `http://localhost:3000` to access the ExchangeNest platform.
+2. Open your browser and navigate to `http://localhost:8000` to access the ExchangeNest platform.
 
 3. Register a new account or log in with your existing credentials.
 
