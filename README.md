@@ -19,7 +19,7 @@ ExchangeNest is a cutting-edge trading platform designed to provide users with a
 - [Backend Setup](#backend-setup)
 - [Frontend Setup](#frontend-setup)
 - [Usage](#usage)
-- [Screenshots](#screenshots)
+- [Demo](#demo)
 - [Contribution](#contribution)
 - [License](#license)
 
